@@ -37,7 +37,7 @@ exports.getAll = async (req, res) => {
 exports.update = async (req, res) => {
     const id = req.params.id
     try {
-        const quiz = await Quiz.findbyPk(id, { rejectOnEmpty: true })
+        const quiz = await Quiz.findByPk(id, { rejectOnEmpty: true })
         quiz.update(req.body, {
             where: {id}
         })
@@ -57,7 +57,7 @@ exports.update = async (req, res) => {
 exports.delete = async (req, res) => {
     const id = req.params.id
     try {
-        const quiz = await Quiz.findbyPk(id, { rejectOnEmpty: true });
+        const quiz = await Quiz.findByPk(id, { rejectOnEmpty: true });
 
         quiz.destroy();
 
@@ -76,7 +76,7 @@ exports.delete = async (req, res) => {
 exports.findOne = async (req, res) => {
     const id = req.params.id
     try {
-        const quiz = await Quiz.findbyPk(id, { rejectOnEmpty: true });
+        const quiz = await Quiz.findByPk(id, { rejectOnEmpty: true });
         res.json({
             message: `Quizzes retrieved successfully with id=${id}`,
             data: quiz,
@@ -94,7 +94,7 @@ exports.getByCategoryId = async (req, res) => {
     const id = req.params.id
     const quizzes = await Quiz.findAll({
         where: {
-            levelId: id
+            categoryId: id
         }
     });
     res.json({
